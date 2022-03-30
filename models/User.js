@@ -41,9 +41,12 @@ const userSchema = new Schema(
       required: true,
       trim: true,
     },
-    roles: {
-      type: "string", //ahora lo trae de la base de datos
-    },
+    roles: [
+      {
+        ref: "Role",
+        type: Schema.Types.ObjectId, //Relacion entre el Schema de roles y el de Users
+      },
+    ],
     uuidEmail: {
       type: "string",
     },
