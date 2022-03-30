@@ -1,13 +1,14 @@
 const express = require("express");
 const cors = require("cors");
 const logger = require("morgan");
-const DBConnection = require("../config/Db");
+const DBConnection = require("../config/Db.js");
 
 class Server {
   constructor() {
     this.app = express();
     this.port = process.env.PORT;
     this.urlServer = process.env.URL_SERVER;
+    this.userRoutesPath = "/api/users";
 
     // DataBase
     DBConnection();
@@ -35,7 +36,10 @@ class Server {
   }
 
   //definimos las rutas
-  routes() {}
+  routes() {
+    //rutas de usuario
+    this.app.use(this.userRoutesPath, require("../routes/users.js"));
+  }
 
   listen() {
     this.app.listen(this.port, () => {
