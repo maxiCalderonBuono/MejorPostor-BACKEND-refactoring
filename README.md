@@ -28,7 +28,16 @@ https://github.com/No-Country/S1-07-T-BackEnd
 
 //ACÁ VA LA URL DEL DEPLOY
 
-### Endpoints
+## API endpoints
 
-- Users: /api/users
-- Auth: /api/auth
+These endpoints allow you to handle the backend
+
+### GET
+
+`All users` [api/home]
+
+### POST
+
+`Register user only` [api/user/]
+`Register user only` [api/auth/signup]
+`Register user only` [api/auth/signin]
