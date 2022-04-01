@@ -9,6 +9,7 @@ class Server {
     this.port = process.env.PORT;
     this.urlServer = process.env.URL_SERVER;
     this.userRoutesPath = "/api/users";
+    this.authRoutesPath = "/api/auth";
 
     // DataBase
     DBConnection();
@@ -39,6 +40,9 @@ class Server {
   routes() {
     //rutas de usuario
     this.app.use(this.userRoutesPath, require("../routes/users.js"));
+
+    //rutas de auth
+    this.app.use(this.authRoutesPath, require("../routes/auth.js"));
   }
 
   listen() {
