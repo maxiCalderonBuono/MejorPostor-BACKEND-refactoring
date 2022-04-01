@@ -38,6 +38,6 @@ These endpoints allow you to handle the backend
 
 ### POST
 
-`Register user only` [api/user/]
-`Register user only` [api/auth/signup]
-`Register user only` [api/auth/signin]
+`Register user only` [api/user/] <br>
+`Register user only` [api/auth/signup]<br>
+`Register user only` [api/auth/signin]<br>
