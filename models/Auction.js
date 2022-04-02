@@ -17,7 +17,7 @@ const auctionSchema = new Schema({
         default: false
     },
 
-    user: [
+    category: [
         ref: "Category",
         type: Schema.ObjectId //Relación entre el schema Auction y User
     ],

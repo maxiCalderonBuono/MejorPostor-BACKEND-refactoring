@@ -27,11 +27,11 @@ const productSchema = new Schema({
         required: false
     },
 
-    category: [
+    categories: [
         ref: "Category",
         type: Schema.ObjectId //Relación entre el schema Products y el de Category
     ]
-    subCategory: [
+    subCategories: [
         ref: "SubCategory",
         type: Schema.ObjectId //Relación entre el schema Products y SubCategory
     ]    
