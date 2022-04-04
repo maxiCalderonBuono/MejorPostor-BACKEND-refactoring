@@ -80,7 +80,11 @@ exports.signIn = async (req, res) => {
 
     const token = jwt.sign(payload, privateKey, jwtOptions);
 
-    res.json({ token: token });
+    res.json({
+      token: token,
+      data: payload,
+      message: "User signed in successfully",
+    });
   } catch (error) {
     res.status(400).json({ error: error });
   }
