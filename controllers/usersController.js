@@ -33,6 +33,7 @@ exports.updateUserById = async (req, res) => {
     const id = req.params.userId;
     const obj = req.body;
     const updatedUser = await User.findByIdAndUpdate(id, obj, { new: true });
+
     res.status(200).json({ updatedUser: updatedUser });
   } catch (error) {
     res.status(400).json({ error: error });
