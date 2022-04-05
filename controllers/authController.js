@@ -49,7 +49,7 @@ exports.signUp = async (req, res) => {
     const token = jwt.sign(payload, privateKey, jwtOptions); // Genero el token
 
     res.status(200).json({
-      JWT: token,
+      token: token,
       data: payload,
       message: "User saved successfully",
     });
@@ -82,7 +82,11 @@ exports.signIn = async (req, res) => {
 
     const token = jwt.sign(payload, privateKey, jwtOptions);
 
-    res.status(200).json({ token, payload });
+    res.json({
+      token: token,
+      payload: payload,
+      message: "User signed in successfully",
+    });
   } catch (error) {
     res.status(400).json({ error: error });
   }

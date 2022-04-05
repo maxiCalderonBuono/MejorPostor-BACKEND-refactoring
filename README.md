@@ -12,8 +12,10 @@ https://github.com/No-Country/S1-07-T-BackEnd
 
 ### Reemplazar .env
 
-- PORT_SERVER = 4000
+- PORT = 4000
+- PORT_SERVER_FRONT = 3000
 - URL_SERVER = "http://localhost"
+- PORT_HEROKU = ""
 - STRING_SERVER_MONGODB = ""
 - EMAIL_SERVICE = ""
 - EMAIL_USER = ""
@@ -38,6 +40,6 @@ These endpoints allow you to handle the backend
 
 ### POST
 
-`Register user only` [api/user/] <br>
+`Register user only` [api/users] <br>
 `Register user only` [api/auth/signup]<br>
 `Register user only` [api/auth/signin]<br>
