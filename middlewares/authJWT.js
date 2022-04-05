@@ -12,6 +12,7 @@ exports.verifyToken = async (req, res, next) => {
 
     const decoded = jwt.verify(token, publicKey);
 
+    req.username = decoded.username;
     req.userId = decoded.id;
 
     const user = await User.findById(req.userId);

@@ -5,7 +5,7 @@ const fs = require("fs");
 const privateKey = fs.readFileSync("./keys/private.pem");
 const { sendEmail } = require("../services/nodemailer.js");
 const { v4: uuid } = require("uuid");
-const jwtOptions = { algorithm: "RS256", expiresIn: "1h" };
+const jwtOptions = { algorithm: "RS256", expiresIn: "900s" };
 
 exports.signUp = async (req, res) => {
   try {
@@ -48,9 +48,11 @@ exports.signUp = async (req, res) => {
 
     const token = jwt.sign(payload, privateKey, jwtOptions); // Genero el token
 
-    res
-      .status(200)
-      .json({ JWT: token, data: payload, message: "User saved successfully" });
+    res.status(200).json({
+      JWT: token,
+      data: payload,
+      message: "User saved successfully",
+    });
   } catch (error) {
     res.status(400).json({ error: error });
   }
@@ -80,7 +82,7 @@ exports.signIn = async (req, res) => {
 
     const token = jwt.sign(payload, privateKey, jwtOptions);
 
-    res.json({ token: token });
+    res.status(200).json({ token, payload });
   } catch (error) {
     res.status(400).json({ error: error });
   }
@@ -98,4 +100,18 @@ exports.verify = async (req, res) => {
 
 exports.verified = (req, res) => {
   res.status(200).json({ message: "Verified route" });
+};
+
+exports.revalidarToken = async (req, res) => {
+  const id = req.userId;
+  const username = req.username;
+
+  const payload = {
+    id,
+    username,
+  };
+
+  const token = jwt.sign(payload, privateKey, jwtOptions);
+
+  res.json({ username, id, token });
 };
