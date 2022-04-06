@@ -90,7 +90,7 @@ exports.signUp = async (req, res) => {
       
       <!-- HIDDEN PREHEADER TEXT -->
       <div style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; font-family: 'Poppins', Helvetica, Arial, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">
-            ¡Gracias ${username} por unirte!🚀 Estas mas cerca de ser el Mejor Postor 🧑🏽‍⚖️
+            ¡Gracias ${username} por unirte!🚀 Estas mas cerca de ser el Mejor Postor 🧑🏽‍⚖️. <br>
       </div>
       
       <table border="0" cellpadding="0" cellspacing="0" width="100%">
@@ -213,7 +213,7 @@ exports.signUp = async (req, res) => {
                   
                     <!-- PERMISSION REMINDER -->
                     <tr>
-                      <td bgcolor="#C2C2C2" align="center" style="padding: 0px 30px 30px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px;" >
+                      <td bgcolor="#C2C2C2" align="center" style="padding: 30px 30px 30px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px;" >
                         <p style="margin: 0;">Recibiste este mail ya que acabas de registrarte en Mejor postor, </p>
                       </td>
                     </tr>
@@ -225,7 +225,7 @@ exports.signUp = async (req, res) => {
                     </tr>
                     <!-- ADDRESS -->
                     <tr>
-                      <td bgcolor="#C2C2C2"  style="display:flex; justify-content: space-between; align-items: center; padding: 0px 30px 30px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px;" >
+                      <td bgcolor="#C2C2C2"  style="display:flex; align="center"; justify-content: space-between; align-items: center; padding: 0px 30px 30px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px;" >
                         <p style="margin: 0;">Argentina - 2022</p>
                         <div>
                         <i class="fa-brands fa-twitter fa-2x"></i>
