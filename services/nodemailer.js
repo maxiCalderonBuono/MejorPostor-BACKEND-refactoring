@@ -2,7 +2,7 @@ const nodemailer = require("nodemailer");
 
 const sendEmail = async ({
   email,
-  subject = "Registro a Cala Macrame Deco",
+  subject = "Registro a MejorPostor",
   body,
 }) => {
   try {
