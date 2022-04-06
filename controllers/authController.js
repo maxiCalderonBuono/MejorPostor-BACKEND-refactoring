@@ -35,10 +35,8 @@ exports.signUp = async (req, res) => {
 
     await sendEmail({
       email: email,
-      body: `<!-- THIS EMAIL WAS BUILT AND TESTED WITH LITMUS http://litmus.com -->
-      <!-- IT WAS RELEASED UNDER THE MIT LICENSE https://opensource.org/licenses/MIT -->
-      <!-- QUESTIONS? TWEET US @LITMUSAPP -->
-      <!DOCTYPE html>
+      body: 
+      `<!DOCTYPE html>
       <html>
       <head>
       <title></title>
@@ -225,7 +223,7 @@ exports.signUp = async (req, res) => {
                     </tr>
                     <!-- ADDRESS -->
                     <tr>
-                      <td bgcolor="#C2C2C2"  style="align="center"; justify-content: space-between; align-items: center; padding: 0px 30px 30px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px;" >
+                      <td bgcolor="#C2C2C2" align="center" style="justify-content: space-between; align-items: center; padding: 0px 30px 30px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px;" >
                         <p style="margin: 0;">Argentina - 2022</p>
                       </td>
                     </tr>   
