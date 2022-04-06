@@ -1,4 +1,4 @@
-const Auction = require("../models Auction");
+const Auction = require("../models/Auction");
 
 exports.getAuctions = async (req, res) => {
   try {
@@ -40,7 +40,7 @@ exports.updateAuctionById = async (req, res) => {
     const id = req.params.auctionId;
     const obj = req.body;
     const updateAuction = await Auction.findByAndUpdate(id, obj, { new: true });
-    res.status(200).json({ updateAuction: updateauction });
+    res.status(200).json({ updateAuction: updateAuction });
   } catch {
     res.status(400).json({ error: error });
   }

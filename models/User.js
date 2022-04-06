@@ -52,7 +52,7 @@ const userSchema = new Schema(
     },
     enabled: {
       type: "boolean",
-      default: true,
+      default: false,
     },
     deleted: {
       type: "boolean",
