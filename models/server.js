@@ -2,6 +2,10 @@ const express = require("express");
 const cors = require("cors");
 const logger = require("morgan");
 const DBConnection = require("../config/Db.js");
+const path = require("path");
+const allowedOrigins = [
+  "http://localhost:4000" /*'ACÁ VA LA URL DEL FRONT DE HEROKU'*/,
+];
 
 class Server {
   constructor() {
@@ -24,16 +28,16 @@ class Server {
   middlewares() {
     //Configuracion CORS
 
-    this.app.use(cors());
+    this.app.use(cors({ origin: allowedOrigins }));
 
     //Morgan
     this.app.use(logger("dev"));
 
     //lectura de datos enviados en el body  de la peticion
-    this.app.use(express.json());
+    this.app.use(express.json({ extend: true }));
 
     //Configuracion del directorio publico
-    this.app.use(express.static("public"));
+    this.app.use("/uploads", express.static(path.resolve("uploads"))); // Habilito ruta publica
   }
 
   //definimos las rutas
