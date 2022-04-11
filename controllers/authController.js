@@ -279,6 +279,7 @@ exports.signIn = async (req, res) => {
       return res.status(401).json({ token: null, message: "Invalid password" });
 
     const payload = {
+ IgnacioGibbsDev
       ID: userFound._id,
       Username: userFound.username,
       Roles: userFound.roles[0].name,
