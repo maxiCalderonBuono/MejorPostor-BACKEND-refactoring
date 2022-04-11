@@ -1,4 +1,4 @@
-const Photo = require("../models/Photos");
+const Photo = require("../models/Photo");
 
 exports.createPhoto = async ({ imgTitle, imgDescription, backPath }) => {
   try {

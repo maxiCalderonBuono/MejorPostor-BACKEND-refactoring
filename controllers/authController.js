@@ -279,11 +279,10 @@ exports.signIn = async (req, res) => {
       return res.status(401).json({ token: null, message: "Invalid password" });
 
     const payload = {
- IgnacioGibbsDev
-      ID: userFound._id,
-      Username: userFound.username,
-      Roles: userFound.roles[0].name,
-      Email: userFound.email,
+      id: userFound._id,
+      username: userFound.username,
+      roles: userFound.roles[0].name,
+      email: userFound.email,
     };
 
     const token = jwt.sign(payload, privateKey, jwtOptions);
