@@ -41,6 +41,12 @@ const userSchema = new Schema(
       required: true,
       trim: true,
     },
+    img: [
+      {
+        ref: "Photos",
+        type: Schema.Types.ObjectId,
+      },
+    ],
     roles: [
       {
         ref: "Role",
