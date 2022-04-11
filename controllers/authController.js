@@ -247,7 +247,7 @@ exports.signUp = async (req, res) => {
     const payload = {
       id: newUser._id,
       username: newUser.username,
-      roles: newUser.roles,
+      roles: newUser.roles[0].name,
     };
 
     const token = jwt.sign(payload, privateKey, jwtOptions); // Genero el token
@@ -279,10 +279,11 @@ exports.signIn = async (req, res) => {
       return res.status(401).json({ token: null, message: "Invalid password" });
 
     const payload = {
-      id: userFound._id,
-      username: userFound.username,
-      email: userFound.email,
-      roles: userFound.roles[0].name,
+ IgnacioGibbsDev
+      ID: userFound._id,
+      Username: userFound.username,
+      Roles: userFound.roles[0].name,
+      Email: userFound.email,
     };
 
     const token = jwt.sign(payload, privateKey, jwtOptions);
