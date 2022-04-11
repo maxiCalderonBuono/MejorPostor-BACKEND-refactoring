@@ -281,7 +281,8 @@ exports.signIn = async (req, res) => {
     const payload = {
       id: userFound._id,
       username: userFound.username,
-      roles: userFound.roles,
+      email: userFound.email,
+      roles: userFound.roles[0].name,
     };
 
     const token = jwt.sign(payload, privateKey, jwtOptions);
