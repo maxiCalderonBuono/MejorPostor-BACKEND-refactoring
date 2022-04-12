@@ -1,5 +1,4 @@
 const User = require("../models/User");
-const { createPhoto } = require("../services/photosHandler");
 
 exports.getUsers = async (req, res) => {
   try {
@@ -33,18 +32,6 @@ exports.updateUserById = async (req, res) => {
   try {
     const id = req.params.userId;
     const obj = req.body;
-
-    //carga de foto
-
-    const { imgTitle, imgDescription } = req.body;
-    const { path } = req.file;
-    const backPath = `process.env.URL_SERVER: process.env.PORT_SERVER/${path}`;
-    const photo = await createPhoto({ imgTitle, imgDescription, backPath });
-
-    obj.img = photo._id;
-
-    //fin carga de foto
-
     const updatedUser = await User.findByIdAndUpdate(id, obj, { new: true });
     res.status(200).json({ updatedUser: updatedUser });
   } catch (error) {
