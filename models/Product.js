@@ -24,18 +24,11 @@ const productSchema = new Schema({
     type: Number,
     required: false,
   },
-  categories: [
-    {
-      ref: "Category",
-      type: Schema.ObjectId, //Relación entre el schema Products y el de Category
-    },
-  ],
-  subCategories: [
-    {
-      ref: "SubCategory",
-      type: Schema.ObjectId, //Relación entre el schema Products y SubCategory
-    },
-  ],
+  category: {
+    type: String,
+    trim: true,
+    required: true,
+  },
   users: [
     {
       ref: "User",

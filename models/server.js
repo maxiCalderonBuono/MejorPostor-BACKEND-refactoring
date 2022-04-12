@@ -35,9 +35,6 @@ class Server {
 
     //lectura de datos enviados en el body  de la peticion
     this.app.use(express.json({ extend: true }));
-
-    //Configuracion del directorio publico
-    this.app.use("/uploads", express.static(path.resolve("uploads"))); // Habilito ruta publica
   }
 
   //definimos las rutas
