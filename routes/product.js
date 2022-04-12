@@ -6,10 +6,12 @@ const {
   getProductById,
   updateProductById,
   deleteProductById,
+  getProductsByUser,
 } = require("../controllers/productsController");
 
 router.get("/", getProducts);
 router.get("/:productId", getProductById);
+router.get("/:userId", getProductsByUser);
 router.post("/", createProduct);
 router.put("/:productId", updateProductById);
 router.delete("/:productId", deleteProductById);

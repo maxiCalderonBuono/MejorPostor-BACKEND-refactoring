@@ -72,3 +72,15 @@ exports.deleteProductById = async (req, res) => {
     res.status(400).json({ error: error });
   }
 };
+
+exports.getProductsByUser = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const products = await Product.find({ user: userId });
+    res.status(200).json({ products });
+  } catch (error) {
+    res.status(400).json({ error: error });
+  }
+};
+
+//
