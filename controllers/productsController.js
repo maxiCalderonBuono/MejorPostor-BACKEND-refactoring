@@ -1,22 +1,33 @@
 const Product = require("../models/Product");
 
+exports.createProduct = async (req, res) => {
+  try {
+    const { name, image, description, initialPrice, category, user } = req.body;
+
+    const newProduct = new Product({
+      name,
+      image,
+      description,
+      initialPrice,
+      category,
+      user,
+    });
+
+    const productSaved = await newProduct.save();
+
+    res
+      .status(200)
+      .json({ productSaved }.message("Product created successfully"));
+  } catch (error) {
+    res.status(400).json({ error: error });
+  }
+};
+
 exports.getProducts = async (req, res) => {
   try {
     const products = await Product.aggregate([
       //Obtención de modelos relacionados
       {
-        $lookup: {
-          from: "categories",
-          localField: "categories",
-          foreignField: "_id",
-          as: "roles",
-        },
-        $lookup: {
-          from: "subCategories",
-          localField: "subCategories",
-          foreignField: "_id",
-          as: "subCategories",
-        },
         $lookup: {
           from: "users",
           localField: "users",
@@ -47,7 +58,7 @@ exports.updateProductById = async (req, res) => {
     const obj = req.body;
     const updateProduct = await Product.findByAndUpdate(id, obj, { new: true });
     res.status(200).json({ updateProduct: updateProduct });
-  } catch {
+  } catch (error) {
     res.status(400).json({ error: error });
   }
 };

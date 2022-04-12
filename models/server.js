@@ -2,7 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const logger = require("morgan");
 const DBConnection = require("../config/Db.js");
-const path = require("path");
 const allowedOrigins = [
   "http://localhost:3000" /*'ACÁ VA LA URL DEL FRONT DE HEROKU'*/,
 ];
@@ -14,6 +13,7 @@ class Server {
     this.urlServer = process.env.URL_SERVER;
     this.userRoutesPath = "/api/users";
     this.authRoutesPath = "/api/auth";
+    this.productRoutesPath = "/api/products";
 
     // DataBase
     DBConnection();
@@ -44,6 +44,9 @@ class Server {
 
     //rutas de auth
     this.app.use(this.authRoutesPath, require("../routes/auth.js"));
+
+    //rutas de productos
+    this.app.use(this.productRoutesPath, require("../routes/product.js"));
   }
 
   listen() {

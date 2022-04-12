@@ -1,5 +1,4 @@
 const User = require("../models/User");
-const { createPhoto } = require("../services/photoHandler");
 
 exports.getUsers = async (req, res) => {
   try {

@@ -41,7 +41,7 @@ const userSchema = new Schema(
       required: true,
       trim: true,
     },
-    img: {
+    image: {
       type: "string",
       required: true,
       trim: true,
