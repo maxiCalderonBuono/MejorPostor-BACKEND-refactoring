@@ -14,6 +14,7 @@ class Server {
     this.userRoutesPath = "/api/users";
     this.authRoutesPath = "/api/auth";
     this.productRoutesPath = "/api/products";
+    this.auctionRoutesPath = "/api/auctions";
 
     // DataBase
     DBConnection();
@@ -47,6 +48,9 @@ class Server {
 
     //rutas de productos
     this.app.use(this.productRoutesPath, require("../routes/product.js"));
+
+    //rutas de subastas
+    this.app.use(this.auctionRoutesPath, require("../routes/auction.js"));
   }
 
   listen() {
