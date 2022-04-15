@@ -15,6 +15,7 @@ class Server {
     this.authRoutesPath = "/api/auth";
     this.productRoutesPath = "/api/products";
     this.auctionRoutesPath = "/api/auctions";
+    this.paymentRoutesPath = "/api/payment";
 
     // DataBase
     DBConnection();
@@ -41,16 +42,19 @@ class Server {
   //definimos las rutas
   routes() {
     //rutas de usuario
-    this.app.use(this.userRoutesPath, require("../routes/users.js"));
+    this.app.use(this.userRoutesPath, require("./users.js"));
 
     //rutas de auth
-    this.app.use(this.authRoutesPath, require("../routes/auth.js"));
+    this.app.use(this.authRoutesPath, require("./auth.js"));
 
     //rutas de productos
-    this.app.use(this.productRoutesPath, require("../routes/product.js"));
+    this.app.use(this.productRoutesPath, require("./product.js"));
 
     //rutas de subastas
-    this.app.use(this.auctionRoutesPath, require("../routes/auction.js"));
+    this.app.use(this.auctionRoutesPath, require("./auction.js"));
+
+    //rutas de pago
+    this.app.use(this.paymentRoutesPath, require("./payment.js"));
   }
 
   listen() {

@@ -7,7 +7,7 @@ require("dotenv").config();
 createRoles();
 
 //Server
-const Server = require("./models/server.js");
+const Server = require("./routes/server.js");
 const server = new Server();
 
 server.listen(); //inicializacion del server

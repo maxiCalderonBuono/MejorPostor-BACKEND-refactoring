@@ -2,8 +2,7 @@ const { Schema, model } = require("mongoose");
 
 const auctionSchema = new Schema({
   duration: {
-    types: Number,
-    required: true,
+    types: Date,
   },
   highest_bid: {
     type: Number,
