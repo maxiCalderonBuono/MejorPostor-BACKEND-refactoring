@@ -17,6 +17,11 @@ const productSchema = new Schema(
       trim: true,
       required: true,
     },
+    location: {
+      type: String,
+      trim: true,
+      required: true,
+    },
     initialPrice: {
       type: Number,
       required: true,
