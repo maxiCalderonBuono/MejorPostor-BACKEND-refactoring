@@ -303,7 +303,7 @@ exports.verify = async (req, res) => {
     const { uid } = req.params;
     console.log(uid)
     await User.updateOne({ uuidEmail: uid }, { $set: { enabled: true } });
-    res.status(200).message("Email verified successfully");
+    res.status(200).json({message: "Email verified successfully" });
   } catch (error) {
     res.status(400).json({ error: error });
   }
