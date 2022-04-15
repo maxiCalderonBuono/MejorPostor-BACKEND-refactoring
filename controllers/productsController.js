@@ -20,7 +20,7 @@ exports.createProduct = async (req, res) => {
 
     res
       .status(200)
-      .json({ productSaved }.message("Product created successfully"));
+      .json({message: "Product created successfully"});
   } catch (error) {
     res.status(400).json({ error: error });
   }
