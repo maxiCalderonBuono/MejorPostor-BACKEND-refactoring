@@ -1,9 +1,20 @@
 const Product = require("../models/Product");
+const User = require("../models/User");
 
 exports.createProduct = async (req, res) => {
   try {
-    const { name, image, description, initialPrice, category, location, user } =
-      req.body;
+    const {
+      name,
+      image,
+      description,
+      initialPrice,
+      category,
+      location,
+      id,
+      duration,
+      highestBid,
+      bidUsers,
+    } = req.body;
 
     const newProduct = new Product({
       name,
@@ -12,12 +23,20 @@ exports.createProduct = async (req, res) => {
       initialPrice,
       category,
       location,
-      user,
+      duration,
+      highestBid,
     });
 
-    const productSaved = await newProduct.save();
+    if (id && bidUsers) {
+      const user = await User.findOne({ _id: id });
+      newProduct.users = [user._id];
+      const bidUser = await User.findOne({ _id: bidUsers });
+      newProduct.bidUsers = [bidUser._id];
+    }
 
-    res.status(200).json({ message: "Product created successfully" });
+    await newProduct.save();
+
+    res.status(200).json({ message: "Auction created successfully" });
   } catch (error) {
     res.status(400).json({ error: error });
   }

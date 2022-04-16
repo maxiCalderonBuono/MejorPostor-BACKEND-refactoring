@@ -14,7 +14,6 @@ class Server {
     this.userRoutesPath = "/api/users";
     this.authRoutesPath = "/api/auth";
     this.productRoutesPath = "/api/products";
-    this.auctionRoutesPath = "/api/auctions";
     this.paymentRoutesPath = "/api/payment";
 
     // DataBase
@@ -49,9 +48,6 @@ class Server {
 
     //rutas de productos
     this.app.use(this.productRoutesPath, require("./product.js"));
-
-    //rutas de subastas
-    this.app.use(this.auctionRoutesPath, require("./auction.js"));
 
     //rutas de pago
     this.app.use(this.paymentRoutesPath, require("./payment.js"));
