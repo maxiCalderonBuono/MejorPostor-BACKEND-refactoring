@@ -1,16 +1,35 @@
 # S1-07-T-BackEnd
 
-BackEnd de Mejor Postor
+BackEnd de Mejor Postor, PWA de subastas online.
+## Stack/Tecnologías utilizadas
 
-# Para iniciar el proyecto
+- NodeJS
+- Express
+- MongoDB
+- BcryptJS
+- JWT
+- Nodemailer
+- Mercadopago
 
-### Clone el siguiente repositorio:
+## Autores
 
-https://github.com/No-Country/S1-07-T-BackEnd
+### Back-End
+- Ignacio Gibbs
 
-- `npm install`
+### Front-End
 
-### Reemplazar .env
+- Alejandro Pedrosa
+- Maximiliano Calderón
+- Lisandro Perrotta
+## URL Server backend
+
+/* ACÁ VA LA URL DEL DEPLOY */
+## Para iniciar el proyecto
+### Clone el siguiente repositorio: https://github.com/No-Country/S1-07-T-BackEnd
+
+- `npm i`
+
+## Reemplazar .env
 
 - PORT = 4000
 - PORT_SERVER_FRONT = 3000
@@ -21,25 +40,14 @@ https://github.com/No-Country/S1-07-T-BackEnd
 - EMAIL_USER = ""
 - EMAIL_PASS = ""
 - MP_TOKEN = ""
-
-###
-
-- `npm dev run`
-
-### URL Server backend
-
-//ACÁ VA LA URL DEL DEPLOY
-
 ## API endpoints
 
 These endpoints allow you to handle the backend
 
-### GET
-
-`All users` [api/home]
-
-### POST
-
-`Register user only` [api/users] <br>
+`All users` [api/home]<br>
 `All users` [api/auth/signup]<br>
-`Register user only` [api/auth/signin]<br>
+`All users` [api/auth/signin]<br>
+`Register user only` [api/users] <br>
+`Register user only` [api/products] <br>
+`Register user only` [api/auction] <br>
+`Register user only` [api/payment] <br>
