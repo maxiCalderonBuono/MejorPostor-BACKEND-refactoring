@@ -4,9 +4,9 @@ const auctionSchema = new Schema({
   duration: {
     types: Date,
   },
-  highest_bid: {
+  highestBid: {
     type: Number,
-    required: false,
+    required: true,
   },
   finalize: {
     type: Boolean,

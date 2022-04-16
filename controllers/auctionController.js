@@ -1,9 +1,12 @@
 const Auction = require("../models/Auction");
+const Product= requiere("../models/Product")
 
 exports.createAuction = async (req, res) => {
+  console.log(1)
   try {
-    const { duration } = req.body;
-    const auction = new Auction({ duration });
+    const { duration, highestBid } = req.body;
+    console.log("highestBid", highestBid, "duration", duration)
+    const auction = new Auction({ duration, highestBid });
     await auction.save();
     res.status(201).json({ message: "Auction created" });
   } catch (error) {
