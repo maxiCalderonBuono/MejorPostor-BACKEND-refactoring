@@ -52,7 +52,7 @@ const productSchema = new Schema(
         type: Schema.Types.ObjectId, //Relación entre el schema Products y el de Users
       },
     ],
-    bidUsers: [
+    bidUser: [
       {
         ref: "User",
         type: Schema.Types.ObjectId,
