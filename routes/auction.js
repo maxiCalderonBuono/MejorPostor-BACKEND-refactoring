@@ -10,7 +10,7 @@ const {
 
 router.get("/", getAuctions);
 router.get("/:auctionId", getAuctionById);
-/*router.post("/", createAuction);*/
+router.post("/", createAuction);
 router.put("/:auctionId", updateAuctionById);
 router.delete("/:auctionId", deleteAuctionById);
 
