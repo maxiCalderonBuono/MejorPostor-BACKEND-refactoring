@@ -52,6 +52,12 @@ const userSchema = new Schema(
         type: Schema.Types.ObjectId, //Relación entre el Schema de roles y el de Users
       },
     ],
+    products: [
+      {
+        ref: "Product",
+        type: Schema.Types.ObjectId,
+      },
+    ],
     uuidEmail: {
       type: "string",
     },

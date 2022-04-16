@@ -16,6 +16,9 @@ exports.createProduct = async (req, res) => {
       bidUsers,
     } = req.body;
 
+    const user = await User.findById(id);
+    const highestBidUsers = await User.findById(bidUsers);
+
     const newProduct = new Product({
       name,
       image,
@@ -25,16 +28,15 @@ exports.createProduct = async (req, res) => {
       location,
       duration,
       highestBid,
+      user: user._id,
+      highestBidUsers: highestBidUsers._id,
     });
 
-    if (id && bidUsers) {
-      const user = await User.findOne({ _id: id });
-      newProduct.users = [user._id];
-      const bidUser = await User.findOne({ _id: bidUsers });
-      newProduct.bidUsers = [bidUser._id];
-    }
-
     await newProduct.save();
+
+    user.products = user.products.concat(newProduct._id);
+
+    await user.save();
 
     res.status(200).json({ message: "Auction created successfully" });
   } catch (error) {
