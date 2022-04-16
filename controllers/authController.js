@@ -9,9 +9,16 @@ const jwtOptions = { algorithm: "RS256", expiresIn: "900s" };
 
 exports.signUp = async (req, res) => {
   try {
-    const { username, password, email, roles, name, surname, birthYear, image } =
-      req.body;
-
+    const {
+      username,
+      password,
+      email,
+      roles,
+      name,
+      surname,
+      birthYear,
+      image,
+    } = req.body;
 
     const uid = uuid();
 
@@ -25,7 +32,7 @@ exports.signUp = async (req, res) => {
       image,
       uuidEmail: uid,
     });
-   
+
     if (roles) {
       // Busco el id de los roles asignado, si no lo encuentra uso User por defecto
       const foundRoles = await Role.find({ name: { $in: roles } });
@@ -37,8 +44,7 @@ exports.signUp = async (req, res) => {
 
     await sendEmail({
       email: email,
-      body: 
-      `<!DOCTYPE html>
+      body: `<!DOCTYPE html>
       <html>
       <head>
       <title></title>
@@ -301,9 +307,8 @@ exports.signIn = async (req, res) => {
 exports.verify = async (req, res) => {
   try {
     const { uid } = req.params;
-    console.log(uid)
     await User.updateOne({ uuidEmail: uid }, { $set: { enabled: true } });
-    res.status(200).json({message: "Email verified successfully" });
+    res.status(200).json({ message: "Email verified successfully" });
   } catch (error) {
     res.status(400).json({ error: error });
   }

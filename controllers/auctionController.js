@@ -1,16 +1,21 @@
 const Auction = require("../models/Auction");
 
+exports.createAuction = async (req, res) => {
+  try {
+    const { duration } = req.body;
+    const auction = new Auction({ duration });
+    await auction.save();
+    res.status(201).json({ message: "Auction created" });
+  } catch (error) {
+    res.status(500).json({ message: "Error creating auction" });
+  }
+};
+
 exports.getAuctions = async (req, res) => {
   try {
     const auctions = await Auction.aggregate([
       //Obtención de modelos relacionados
       {
-        $lookup: {
-          from: "category",
-          localField: "category",
-          foreignField: "_id",
-          as: "roles",
-        },
         $lookup: {
           from: "product",
           localField: "product",
