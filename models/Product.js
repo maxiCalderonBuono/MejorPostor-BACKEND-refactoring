@@ -36,7 +36,7 @@ const productSchema = new Schema(
       required: true,
     },
     duration: {
-      types: Date,
+      type: Date,
     },
     highestBid: {
       type: Number,

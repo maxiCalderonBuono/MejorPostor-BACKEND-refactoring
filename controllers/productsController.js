@@ -32,7 +32,7 @@ exports.createProduct = async (req, res) => {
       user: user._id,
       bidUser: highestBidUser._id,
     });
-    console.log("bidUser", bidUser)
+    console.log("duration", duration)
     await newProduct.save();
 
     user.products = user.products.concat(newProduct._id);
