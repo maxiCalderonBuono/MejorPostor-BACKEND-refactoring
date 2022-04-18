@@ -323,7 +323,7 @@ exports.revalidarToken = async (req, res) => {
   const id = req.userId;
   const username = req.username;
 
-  const userFound = await User.findOne({ username }).populate("roles");
+  const userFound = await User.findOne({ username, id }).populate("roles");
 
   const payload = {
     id: id,
