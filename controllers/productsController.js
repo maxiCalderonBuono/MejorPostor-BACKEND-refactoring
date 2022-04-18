@@ -15,7 +15,6 @@ exports.createProduct = async (req, res) => {
       highestBid,
       bidUser,
     } = req.body;
-     
 
     const user = await User.findById(id);
     const highestBidUser = await User.findById(bidUser);
@@ -32,7 +31,7 @@ exports.createProduct = async (req, res) => {
       user: user._id,
       bidUser: highestBidUser._id,
     });
-  
+
     await newProduct.save();
 
     user.products = user.products.concat(newProduct._id);
@@ -66,7 +65,7 @@ exports.getProducts = async (req, res) => {
 
 exports.getProductById = async (req, res) => {
   try {
-    const {productId} = req.params;
+    const { productId } = req.params;
     const product = await Product.findById(productId);
     res.status(200).json({ product: product });
   } catch (error) {
@@ -76,9 +75,11 @@ exports.getProductById = async (req, res) => {
 
 exports.updateProductById = async (req, res) => {
   try {
-    const id = req.params.productId;
+    const { productId } = req.params;
     const obj = req.body;
-    const updateProduct = await Product.findByAndUpdate(id, obj, { new: true });
+    const updateProduct = await Product.findByAndUpdate(productId, obj, {
+      new: true,
+    });
     res.status(200).json({ updateProduct: updateProduct });
   } catch (error) {
     res.status(400).json({ error: error });
@@ -87,7 +88,7 @@ exports.updateProductById = async (req, res) => {
 
 exports.deleteProductById = async (req, res) => {
   try {
-    const {productId} = req.params;
+    const { productId } = req.params;
     await Product.updateOne({ _id: productId }, { $set: { deleted: true } });
     res.status(200).json({ message: "Product deleted successfully" });
   } catch (error) {
@@ -97,7 +98,7 @@ exports.deleteProductById = async (req, res) => {
 
 exports.getProductsByUser = async (req, res) => {
   try {
-    const {userId} = req.params;
+    const { userId } = req.params;
     const products = await Product.find({ user: userId });
     res.status(200).json({ products });
   } catch (error) {
