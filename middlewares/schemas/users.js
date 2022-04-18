@@ -21,12 +21,8 @@ exports.usersSchema = joi.object({
     .string()
     .required()
     .messages({ "any.required": "El email es requerido" }),
-  password: joi
-    .string()
-    .required()
-    .messages({ "any.required": "La contraseña es requerida" }),
+  id: joi.string().messages({ "any.required": "El id es requerido" }),
   username: joi
     .string()
-    .required()
-    .messages({ "any.required": "El nombre de usuario es requerido" }),
+    .messages({ "any.required": "El username es requerido" }),
 });
