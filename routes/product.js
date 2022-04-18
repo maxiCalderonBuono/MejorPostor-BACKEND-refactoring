@@ -10,7 +10,7 @@ const {
 } = require("../controllers/productsController");
 const { verifyToken, isModerator, isAdmin } = require("../middlewares/authJwt");
 
-router.get("/", [verifyToken, isModerator], getProducts);
+router.get("/", getProducts);
 router.get("/:productId", [verifyToken, isModerator], getProductById);
 router.get("/user/:userId", [verifyToken, isModerator], getProductsByUser);
 router.post("/", [verifyToken, isModerator], createProduct);
