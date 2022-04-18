@@ -12,17 +12,19 @@ const {
   checkRolesExisted,
 } = require("../middlewares/validationSignup");
 const { verifyToken } = require("../middlewares/authJWT");
+const validation = require("../services/dataValidation");
+const { signUpSchema, signInSchema } = require("../middlewares/schemas/auth");
 
-router.post("/signin", signIn);
+router.post("/signin", /*validation(signInSchema),*/ signIn);
 
 router.post(
   "/signup",
-  [checkRolesExisted, checkDuplicateUsernameOrEmail],
+  /*[checkRolesExisted, checkDuplicateUsernameOrEmail, validation(signUpSchema)],*/
   signUp
 );
 
 router.get("/verify/:uid", verify);
 router.get("/verified", verified);
-router.get("/renew", verifyToken, revalidarToken);
+router.get("/renew", /*verifyToken,*/ revalidarToken);
 
 module.exports = router;
