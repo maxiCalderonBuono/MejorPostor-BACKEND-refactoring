@@ -32,7 +32,7 @@ exports.createProduct = async (req, res) => {
       user: user._id,
       bidUser: highestBidUser._id,
     });
-    console.log("duration", duration)
+  
     await newProduct.save();
 
     user.products = user.products.concat(newProduct._id);
@@ -66,8 +66,8 @@ exports.getProducts = async (req, res) => {
 
 exports.getProductById = async (req, res) => {
   try {
-    const id = req.parms.productId;
-    const product = await Product.findById(id);
+    const {productId} = req.params;
+    const product = await Product.findById(productId);
     res.status(200).json({ product: product });
   } catch (error) {
     res.status(400).json({ error: error });
@@ -87,8 +87,8 @@ exports.updateProductById = async (req, res) => {
 
 exports.deleteProductById = async (req, res) => {
   try {
-    const id = req.params.productId;
-    await Product.updateOne({ _id: id }, { $set: { deleted: true } });
+    const {productId} = req.params;
+    await Product.updateOne({ _id: productId }, { $set: { deleted: true } });
     res.status(200).json({ message: "Product deleted successfully" });
   } catch (error) {
     res.status(400).json({ error: error });
@@ -97,7 +97,7 @@ exports.deleteProductById = async (req, res) => {
 
 exports.getProductsByUser = async (req, res) => {
   try {
-    const userId = req.params.userId;
+    const {userId} = req.params;
     const products = await Product.find({ user: userId });
     res.status(200).json({ products });
   } catch (error) {
