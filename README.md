@@ -23,7 +23,7 @@ BackEnd de Mejor Postor, PWA de subastas online.
 - Lisandro Perrotta
 ## URL Server backend
 
-/* ACÁ VA LA URL DEL DEPLOY */
+https://mejorpostor-backend.herokuapp.com/
 ## Para iniciar el proyecto
 ### Clone el siguiente repositorio: https://github.com/No-Country/S1-07-T-BackEnd
 

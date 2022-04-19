@@ -14,7 +14,7 @@ exports.checkRolesExisted = (req, res, next) => {
   next();
 };
 
-exports.checkDuplicateUsernameOrEmail = async (req, res, next) => {
+exports.checkDuplicateUsernameOrEmail = async function (req, res, next) {
   const { username, email } = req.body;
 
   const userUsername = await User.findOne({ username: username });

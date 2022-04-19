@@ -8,18 +8,15 @@ const {
   deleteProductById,
   getProductsByUser,
 } = require("../controllers/productsController");
-const { verifyToken, isModerator, isAdmin } = require("../middlewares/authJwt");
+const { verifyToken } = require("../middlewares/authJwt");
 const validation = require("../services/dataValidation");
 const { productSchema } = require("../middlewares/schemas/products");
 
 router.get("/", getProducts);
 router.get("/:productId", getProductById);
-router.get("/user/:userId", /* [verifyToken, isModerator],*/ getProductsByUser);
+router.get("/user/:userId", verifyToken, getProductsByUser);
 router.post("/", [verifyToken, validation(productSchema)], createProduct);
-router.put("/:productId", /*[verifyToken, isModerator],*/ updateProductById);
-router.delete(
-  "/:productId",
-  /* [verifyToken, isModerator],*/ deleteProductById
-);
+router.put("/:productId", verifyToken, updateProductById);
+router.delete("/:productId", verifyToken, deleteProductById);
 
 module.exports = router;

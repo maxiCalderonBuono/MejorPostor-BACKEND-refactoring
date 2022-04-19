@@ -25,7 +25,7 @@ exports.verifyToken = async (req, res, next) => {
   }
 };
 
-exports.isModerator = async (req, res, next) => {
+exports.isModerator = async function (req, res, next) {
   const user = await User.findById(req.userId);
 
   const roles = await Role.find({ _id: { $in: user.roles } });

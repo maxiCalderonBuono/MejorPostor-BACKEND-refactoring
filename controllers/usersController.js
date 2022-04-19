@@ -12,15 +12,15 @@ exports.getUsers = async (req, res) => {
         },
       },
     ]);
-    res.status(200).json({ users });
+    res.status(200).json({ users: users });
   } catch (error) {
     res.status(400).json({ error: error });
   }
 };
 
-exports.getUserById = async (req, res) => {
+exports.getUserById = async function (req, res) {
   try {
-    const {userId} = req.params;
+    const { userId } = req.params;
     const user = await User.findById(userId);
     res.status(200).json({ user: user });
   } catch (error) {
@@ -28,20 +28,22 @@ exports.getUserById = async (req, res) => {
   }
 };
 
-exports.updateUserById = async (req, res) => {
+exports.updateUserById = async function (req, res) {
   try {
-    const {userId} = req.params;
+    const { userId } = req.params;
     const obj = req.body;
-    const updatedUser = await User.findByIdAndUpdate(userId, obj, { new: true });
+    const updatedUser = await User.findByIdAndUpdate(userId, obj, {
+      new: true,
+    });
     res.status(200).json({ updatedUser: updatedUser });
   } catch (error) {
     res.status(400).json({ error: error });
   }
 };
 
-exports.deleteUserById = async (req, res) => {
+exports.deleteUserById = async function (req, res) {
   try {
-    const {userId} = req.params;
+    const { userId } = req.params;
     await User.updateOne({ _id: userId }, { $set: { deleted: true } });
     res.status(200).json({ message: "User deleted successfully" });
   } catch (error) {

@@ -1,9 +1,9 @@
-const { createRoles } = require("./config/InitialSetup.js");
-
 //Configuramos dotenv
 require("dotenv").config();
 
 // Genera los roles la primer vez que se inicializa la app
+
+const { createRoles } = require("./config/InitialSetup.js");
 createRoles();
 
 //Server

@@ -5,3 +5,5 @@
 # Misceláneo
 
 .env
+
+.eslintrc.json

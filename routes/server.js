@@ -5,8 +5,6 @@ const DBConnection = require("../config/Db.js");
 const allowedOrigins = [
   "http://localhost:3000" /*'ACÁ VA LA URL DEL FRONT DE HEROKU'*/,
 ];
-
-
 class Server {
   constructor() {
     this.app = express();

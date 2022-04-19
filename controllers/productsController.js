@@ -44,7 +44,7 @@ exports.createProduct = async (req, res) => {
   }
 };
 
-exports.getProducts = async (req, res) => {
+exports.getProducts = async function (req, res) {
   try {
     const products = await Product.aggregate([
       //Obtención de modelos relacionados
@@ -57,13 +57,13 @@ exports.getProducts = async (req, res) => {
         },
       },
     ]);
-    res.status(200).json({ products });
+    res.status(200).json({ products: products });
   } catch (error) {
     res.status(400).json({ error: error });
   }
 };
 
-exports.getProductById = async (req, res) => {
+exports.getProductById = async function (req, res) {
   try {
     const { productId } = req.params;
     const product = await Product.findById(productId);
@@ -73,7 +73,7 @@ exports.getProductById = async (req, res) => {
   }
 };
 
-exports.updateProductById = async (req, res) => {
+exports.updateProductById = async function (req, res) {
   try {
     const { productId } = req.params;
     const obj = req.body;
@@ -86,7 +86,7 @@ exports.updateProductById = async (req, res) => {
   }
 };
 
-exports.deleteProductById = async (req, res) => {
+exports.deleteProductById = async function (req, res) {
   try {
     const { productId } = req.params;
     await Product.updateOne({ _id: productId }, { $set: { deleted: true } });
@@ -96,11 +96,11 @@ exports.deleteProductById = async (req, res) => {
   }
 };
 
-exports.getProductsByUser = async (req, res) => {
+exports.getProductsByUser = async function (req, res) {
   try {
     const { userId } = req.params;
     const products = await Product.find({ user: userId });
-    res.status(200).json({ products });
+    res.status(200).json({ products: products });
   } catch (error) {
     res.status(400).json({ error: error });
   }

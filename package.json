@@ -31,5 +31,8 @@
     "nodemailer": "^6.7.3",
     "nodemon": "^2.0.15",
     "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.13.0"
   }
 }

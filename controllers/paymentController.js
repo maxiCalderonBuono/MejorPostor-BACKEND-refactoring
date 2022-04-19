@@ -1,9 +1,14 @@
 const MP = require("mercadopago");
-const successHtml =
-  process.env.URL_SERVER + ":" + process.env.PORT_SERVER_FRONT;
+const successHtml = `${process.env.URL_SERVER}:${process.env.PORT_SERVER_FRONT}`;
 
 MP.configure({
-  access_token: process.env.MP_TOKEN,
+  _access_token: process.env.MP_TOKEN,
+  get access_token() {
+    return this._access_token;
+  },
+  set access_token(value) {
+    this._access_token = value;
+  },
 });
 
 exports.preferences = async (req, res) => {
@@ -36,10 +41,10 @@ exports.preferences = async (req, res) => {
 
   MP.preferences
     .create(preference)
-    .then((response) => {
+    .then(function (response) {
       res.redirect(response.body.init_point);
     })
-    .catch((error) => {
+    .catch(function (error) {
       console.log(error);
     });
 };
