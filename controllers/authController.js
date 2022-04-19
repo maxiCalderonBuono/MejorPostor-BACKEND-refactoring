@@ -290,6 +290,7 @@ exports.signIn = async (req, res) => {
       username: userFound.username,
       roles: userFound.roles[0].name,
       email: userFound.email,
+      image: userFound.image,
     };
 
     const token = jwt.sign(payload, privateKey, jwtOptions);
@@ -322,12 +323,21 @@ exports.revalidarToken = async (req, res) => {
   const id = req.userId;
   const username = req.username;
 
+  const userFound = await User.findOne({ username, id }).populate("roles");
+
   const payload = {
-    id,
-    username,
+    id: id,
+    username: username,
+    // roles: userFound.roles[0].name,
+    email: userFound.email,
+    image: userFound.image,
   };
 
   const token = jwt.sign(payload, privateKey, jwtOptions);
 
-  res.json({ username, id, token });
+  res.json({
+    token: token,
+    payload: payload,
+    message: "User signed in successfully",
+  });
 };

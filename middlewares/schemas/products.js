@@ -29,4 +29,17 @@ exports.productSchema = joi.object({
     .date()
     .required()
     .messages({ "any.required": "La duración es requerida" }),
+  id: joi
+    .string()
+    .required()
+    .messages({ "any.required": "El id es requerido" }),
+  highestBid: joi
+    .number()
+    .messages({ "any.required": "El precio más alto es requerido" }),
+  bidUser: joi.string().messages({
+    "any.required": "El usuario que ofrece el precio más alto es requerido",
+  }),
+  userId: joi
+    .string()
+    .messages({ "any.required": "El id del usuario es requerido" }),
 });
