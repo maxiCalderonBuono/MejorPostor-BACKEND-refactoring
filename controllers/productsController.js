@@ -52,7 +52,7 @@ exports.getProducts = async function (req, res) {
         $lookup: {
           from: "users",
           localField: "users",
-          foreignField: "users",
+          foreignField: "_id",
           as: "users",
         },
       },
@@ -66,7 +66,17 @@ exports.getProducts = async function (req, res) {
 exports.getProductById = async function (req, res) {
   try {
     const { productId } = req.params;
-    const product = await Product.findById(productId);
+    const product = await Product.findById(productId).aggregate([
+      //Obtención de modelos relacionados
+      {
+        $lookup: {
+          from: "users",
+          localField: "users",
+          foreignField: "_id",
+          as: "users",
+        },
+      },
+    ]);
     res.status(200).json({ product: product });
   } catch (error) {
     res.status(400).json({ error: error });
@@ -74,7 +84,7 @@ exports.getProductById = async function (req, res) {
 };
 
 exports.updateProductById = async function (req, res) {
-  console.log("params", req.params ,"body" , req.body)
+  console.log("params", req.params, "body", req.body);
   try {
     const { productId } = req.params;
     const obj = req.body;
