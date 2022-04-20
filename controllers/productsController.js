@@ -51,9 +51,9 @@ exports.getProducts = async function (req, res) {
       {
         $lookup: {
           from: "users",
-          localField: "user",
+          localField: "bidUser",
           foreignField: "_id",
-          as: "username",
+          as: "bidUserData",
         },
       },
     ]);
@@ -71,9 +71,9 @@ exports.getProductById = async function (req, res) {
       {
         $lookup: {
           from: "users",
-          localField: "users",
+          localField: "bidUser",
           foreignField: "_id",
-          as: "users",
+          as: "bidUserData",
         },
       },
     ]);
