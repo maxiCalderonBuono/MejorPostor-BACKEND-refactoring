@@ -51,7 +51,7 @@ exports.getProducts = async function (req, res) {
       {
         $lookup: {
           from: "users",
-          localField: "username",
+          localField: "user",
           foreignField: "_id",
           as: "username",
         },
