@@ -13,20 +13,20 @@ MP.configure({
 
 exports.preferences = async (req, res) => {
   const { unit_price } = req.body;
+  const { surname, email } = req.headers;
 
-  const { name, surname, email } = req.headers;
+  console.log(req.headers)
 
   let preference = {
     items: [
       {
-        title: `${name}'s cart`,
+        title: `${surname}'s cart`,
         quantity: 1,
         unit_price: unit_price,
-        currency_id: "ARS",
+        currency_id: "USD",
       },
     ],
     payer: {
-      name: name,
       surname: surname,
       email: email,
     },

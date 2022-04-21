@@ -253,7 +253,6 @@ exports.signUp = async (req, res) => {
     const payload = {
       id: newUser._id,
       uid: newUser.uuidEmail,
-      username: newUser.username,
       roles: newUser.roles[0].name,
     };
 
