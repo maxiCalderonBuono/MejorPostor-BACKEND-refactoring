@@ -16,7 +16,7 @@ exports.preferences = async (req, res) => {
       {
         title: `Subasta de ${surname}`,
         quantity: 1,
-        unit_price: 100,
+        unit_price: unit_price,
         currency_id: "ARS",
       },
     ],
