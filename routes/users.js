@@ -14,7 +14,7 @@ router.get("/" /* verifyToken*/, getUsers);
 router.get("/:userId" /* verifyToken*/, getUserById);
 router.put(
   "/:userId",
-  [, /* verifyToken*/ validation(usersSchema)],
+  [/* verifyToken*/ validation(usersSchema)],
   updateUserById
 );
 router.delete("/:userId" /* verifyToken*/, deleteUserById);
