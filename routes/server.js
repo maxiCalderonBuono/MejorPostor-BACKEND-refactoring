@@ -2,10 +2,12 @@ const express = require("express");
 const cors = require("cors");
 const logger = require("morgan");
 const DBConnection = require("../config/Db.js");
-const allowedOrigins = [
-  "http://localhost:3000" /*'ACÁ VA LA URL DEL FRONT DE HEROKU'*/,
-  ,
-];
+const allowedOrigins = {
+  origin: "*",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+};
 class Server {
   constructor() {
     this.app = express();
