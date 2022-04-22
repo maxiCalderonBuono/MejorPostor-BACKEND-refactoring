@@ -11,7 +11,7 @@ const {
   checkDuplicateUsernameOrEmail,
   checkRolesExisted,
 } = require("../middlewares/validationSignup");
-const { verifyToken } = require("../middlewares/authJwt");
+//const { verifyToken } = require("../middlewares/authJwt");
 
 router.post("/signin", signIn);
 
@@ -23,6 +23,6 @@ router.post(
 
 router.get("/verify/:uid", verify);
 router.get("/verified", verified);
-router.get("/renew", verifyToken, revalidarToken);
+router.get("/renew", /* verifyToken*/, revalidarToken);
 
 module.exports = router;
