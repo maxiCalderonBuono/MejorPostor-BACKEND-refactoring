@@ -23,6 +23,6 @@ router.post(
 
 router.get("/verify/:uid", verify);
 router.get("/verified", verified);
-router.get("/renew", /* verifyToken*/, revalidarToken);
+router.get("/renew" /* verifyToken*/, revalidarToken);
 
 module.exports = router;
