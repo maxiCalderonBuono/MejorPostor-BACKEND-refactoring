@@ -4,7 +4,7 @@ const publicKey = fs.readFileSync("./keys/public.pem");
 const User = require("../models/User");
 const Role = require("../models/Role");
 
-exports.verifyToken = async (req, res, next) => {
+const verifyToken = async (req, res, next) => {
   try {
     const token = req.headers["token"];
 
@@ -52,3 +52,5 @@ exports.isAdmin = async (req, res, next) => {
   }
   return res.status(403).json({ message: "Require admin role" });
 };
+
+module.exports = { verifyToken };
