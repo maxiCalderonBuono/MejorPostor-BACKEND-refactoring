@@ -6,7 +6,7 @@ const {
   updateUserById,
   deleteUserById,
 } = require("../controllers/usersController.js");
-const { verifyToken } = require("../middlewares/authJwt");
+const { verifyToken } = require("../middlewares/authJWT");
 const validation = require("../services/dataValidation");
 const { usersSchema } = require("../middlewares/schemas/users");
 
