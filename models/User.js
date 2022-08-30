@@ -92,6 +92,3 @@ userSchema.methods.toJSON = function () {
   return user;
 };
 module.exports = model("User", userSchema);
-
-
-const user
