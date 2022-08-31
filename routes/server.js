@@ -43,6 +43,9 @@ class Server {
 
   //definimos las rutas
   routes() {
+    if (process.env.NODE_ENV === "production") {
+      app.use(express.static("client/public"));
+    }
     //rutas de usuario
     this.app.use(this.userRoutesPath, require("./users.js"));
 
@@ -58,7 +61,7 @@ class Server {
     this.app.use(express.static("public"));
 
     this.app.get("*", (req, res) => {
-      res.sendFile(path.join(__dirname + "/public/index.html"));
+      res.sendFile(path.join(__dirname, +"client/public", "index.html"));
     });
   }
 
