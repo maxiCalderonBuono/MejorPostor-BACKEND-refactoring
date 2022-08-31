@@ -16,7 +16,10 @@ exports.createProduct = async (req, res) => {
       bidUser,
     } = req.body;
 
+    console.log(bidUser);
+
     const user = await User.findById(id);
+
     const highestBidUser = await User.findById(bidUser);
 
     const newProduct = new Product({
@@ -40,7 +43,7 @@ exports.createProduct = async (req, res) => {
 
     res.status(200).json({ message: "Auction created successfully" });
   } catch (error) {
-    res.status(400).json({ error: error });
+    res.status(400).json({ error });
   }
 };
 
