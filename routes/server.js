@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const cors = require("cors");
 const logger = require("morgan");
 const DBConnection = require("../config/Db.js");
@@ -53,6 +54,10 @@ class Server {
 
     //rutas de pago
     this.app.use(this.paymentRoutesPath, require("./payment.js"));
+
+    this.app.get("*", (req, res) => {
+      res.sendFile(path.join(__dirname + "/public/index.html"));
+    });
   }
 
   listen() {
