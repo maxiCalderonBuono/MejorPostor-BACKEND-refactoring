@@ -43,6 +43,14 @@ class Server {
 
   //definimos las rutas
   routes() {
+    //Public
+
+    this.app.use(express.static("public"));
+
+    this.app.get("*", (req, res) => {
+      res.sendFile(path.join(__dirname + "/public/index.html"));
+    });
+
     //rutas de usuario
     this.app.use(this.userRoutesPath, require("./users.js"));
 
@@ -54,14 +62,6 @@ class Server {
 
     //rutas de pago
     this.app.use(this.paymentRoutesPath, require("./payment.js"));
-
-    //Public
-
-    this.app.use(express.static("public"));
-
-    this.app.get("*", (req, res) => {
-      res.sendFile(path.join(__dirname + "/public/index.html"));
-    });
   }
 
   listen() {
