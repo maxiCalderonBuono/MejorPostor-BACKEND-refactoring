@@ -57,7 +57,7 @@ class Server {
 
     //Public
 
-    app.use(express.static("public"));
+    this.app.use(express.static("public"));
 
     this.app.get("*", (req, res) => {
       res.sendFile(path.join(__dirname + "/public/index.html"));
