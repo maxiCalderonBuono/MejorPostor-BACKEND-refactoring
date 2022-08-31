@@ -55,12 +55,12 @@ class Server {
     //rutas de pago
     this.app.use(this.paymentRoutesPath, require("./payment.js"));
 
+    //Public
+    this.app.use(express.static("dist"));
+
     this.app.get("*", (req, res) => {
       res.sendFile(path.join(__dirname + "/dist/index.html"));
     });
-
-    //Public
-    this.app.use(express.static("dist"));
   }
 
   listen() {
