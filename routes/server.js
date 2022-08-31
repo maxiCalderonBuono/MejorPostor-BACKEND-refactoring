@@ -60,8 +60,6 @@ class Server {
     });
 
     //Public
-
-    this.app.use(express.static("dist"));
   }
 
   listen() {
