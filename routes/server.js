@@ -46,7 +46,7 @@ class Server {
     if (process.env.NODE_ENV === "production") {
       this.app.use(express.static("build"));
       this.app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname, "public", "index.html"));
+        res.sendFile(path.resolve(__dirname, "build", "index.html"));
       });
     }
     //rutas de usuario
