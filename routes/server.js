@@ -43,10 +43,6 @@ class Server {
 
   //definimos las rutas
   routes() {
-    //Public
-
-    this.app.use(express.static("dist"));
-
     //rutas de usuario
     this.app.use(this.userRoutesPath, require("./users.js"));
 
@@ -62,6 +58,10 @@ class Server {
     this.app.get("*", (req, res) => {
       res.sendFile(path.join(__dirname + "/dist/index.html"));
     });
+
+    //Public
+
+    this.app.use(express.static("dist"));
   }
 
   listen() {
