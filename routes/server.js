@@ -45,7 +45,7 @@ class Server {
   routes() {
     //Public
 
-    this.app.use(express.static("public"));
+    this.app.use(express.static("dist"));
 
     //rutas de usuario
     this.app.use(this.userRoutesPath, require("./users.js"));
@@ -60,7 +60,7 @@ class Server {
     this.app.use(this.paymentRoutesPath, require("./payment.js"));
 
     this.app.get("*", (req, res) => {
-      res.sendFile(path.join(__dirname + "/public/index.html"));
+      res.sendFile(path.join(__dirname + "/dist/index.html"));
     });
   }
 
