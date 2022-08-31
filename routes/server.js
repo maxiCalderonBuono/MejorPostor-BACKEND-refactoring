@@ -43,12 +43,6 @@ class Server {
 
   //definimos las rutas
   routes() {
-    if (process.env.NODE_ENV === "production") {
-      this.app.use(express.static("build"));
-      this.app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname, "build", "index.html"));
-      });
-    }
     //rutas de usuario
     this.app.use(this.userRoutesPath, require("./users.js"));
 
@@ -62,6 +56,10 @@ class Server {
     this.app.use(this.paymentRoutesPath, require("./payment.js"));
 
     this.app.use(express.static("public"));
+
+    this.app.get("*", (req, res) => {
+      res.sendFile(path.join(__dirname, +"/public/index.html"));
+    });
   }
 
   listen() {
