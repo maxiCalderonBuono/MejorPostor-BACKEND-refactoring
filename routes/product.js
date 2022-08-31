@@ -8,7 +8,7 @@ const {
   deleteProductById,
   getProductsByUser,
 } = require("../controllers/productsController");
-const { verifyToken } = require("../middlewares/authJwt");
+const { verifyToken } = require("../middlewares/jwt-validator");
 const validation = require("../services/dataValidation");
 const { productSchema } = require("../middlewares/schemas/products");
 

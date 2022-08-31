@@ -11,7 +11,7 @@ const {
   checkDuplicateUsernameOrEmail,
   checkRolesExisted,
 } = require("../middlewares/validationSignup");
-const { verifyToken } = require("../middlewares/authJwt");
+const { verifyToken } = require("../middlewares/jwt-validator");
 
 router.post("/signin", signIn);
 
