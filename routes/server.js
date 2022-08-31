@@ -55,6 +55,8 @@ class Server {
     //rutas de pago
     this.app.use(this.paymentRoutesPath, require("./payment.js"));
 
+    this.app.use(express.static("public"));
+
     this.app.get("*", (req, res) => {
       res.sendFile(path.join(__dirname + "/public/index.html"));
     });
