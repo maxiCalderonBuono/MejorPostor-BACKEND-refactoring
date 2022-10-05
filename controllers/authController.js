@@ -9,26 +9,15 @@ const jwtOptions = { algorithm: "RS256", expiresIn: "900s" };
 
 exports.signUp = async (req, res) => {
   try {
-    const {
-      username,
-      password,
-      email,
-      roles,
-      name,
-      surname,
-      birthYear,
-      image,
-    } = req.body;
+    const { password, email, roles, name, surname, image } = req.body;
 
     const uid = uuid();
 
     const newUser = new User({
-      username,
       password: await User.encryptPassword(password),
       email,
       name,
       surname,
-      birthYear,
       image,
       uuidEmail: uid,
     });
@@ -54,10 +43,10 @@ exports.signUp = async (req, res) => {
       <style type="text/css">
           /* FONTS */
       
-          @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');  
+         @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@700&display=swap"); 
           
           * {
-             font-family: 'Poppins', sans-serif;
+             font-family: "Nunito Sans", sans-serif;
           }
           
           /* CLIENT-SPECIFIC STYLES */
@@ -94,158 +83,139 @@ exports.signUp = async (req, res) => {
       </head>
       <body style="background-color: #eaeaea; margin: 0 !important; padding: 0 !important;">
       
-      <!-- HIDDEN PREHEADER TEXT -->
-      <div style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; font-family: 'Poppins', Helvetica, Arial, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">
-            ¡Gracias ${username} por unirte! 🚀 Estas mas cerca de ser el Mejor Postor. 🧑🏽‍⚖️ <br>
-      </div>
+     
+     
       
       <table border="0" cellpadding="0" cellspacing="0" width="100%">
-          <!-- LOGO -->
           <tr>
-              <td bgcolor="#05a297" align="center">
-                  <!--[if (gte mso 9)|(IE)]>
-                  <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
-                  <tr>
-                  <td align="center" valign="top" width="600">
-                  <![endif]-->
+              <td bgcolor="#3d424a" align="center">
+                  
                   <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" >
                       <tr>
                           <td align="center" valign="top" style="padding: 40px 10px 40px 10px;">
-                              <a href="http://litmus.com" target="_blank">
-                                  
-                              </a>
                           </td>
                       </tr>
                   </table>
-                  <!--[if (gte mso 9)|(IE)]>
-                  </td>
-                  </tr>
-                  </table>
-                  <![endif]-->
               </td>
           </tr>
-          <!-- HERO -->
+          
           <tr>
-              <td bgcolor="#05a297" align="center" style="padding: 0px 10px 0px 10px;">
-                  <!--[if (gte mso 9)|(IE)]>
-                  <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
-                  <tr>
-                  <td align="center" valign="top" width="600">
-                  <![endif]-->
+              <td bgcolor="#3d424a" align="center" style="padding: 0px 10px 0px 10px;">
+                 
                   <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" >
                       <tr>
-                          <td bgcolor="#ffffff" align="center" valign="top" style="padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Poppins', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
-                            <h1 style="font-size: 48px; font-weight: 400; margin: 0;">¡Bienvenido!</h1>
-                          </td>
+                           <td
+                bgcolor="#ffffff"
+                style="
+                  padding: 20px 30px;
+                  font-family: 'Nunito Sans', sans-serif;
+                "
+              >
+                <div style="width: fit-content">
+                  <a
+                    style="text-decoration: none"
+                    href="${process.env.URL_SERVER}:${process.env.PORT_SERVER_FRONT}/"
+                    target="_blank"
+                    ><img
+                      src="https://res.cloudinary.com/dvqlenul5/image/upload/v1664553256/Logo-word_wlz74m.png"
+                      alt="Logo"
+                      title="Logo"
+                      style="width: 200px"
+                  /></a>
+                </div>
+              </td>
                       </tr>
                     
                   </table>
-                  <!--[if (gte mso 9)|(IE)]>
-                  </td>
-                  </tr>
-                  </table>
-                  <![endif]-->
-              </td>
+                  
           </tr>
-          <!-- COPY BLOCK -->
+          
           <tr>
               <td bgcolor="#f4f4f4" align="center" style="padding: 0px 10px 0px 10px;">
-                  <!--[if (gte mso 9)|(IE)]>
-                  <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
-                  <tr>
-                  <td align="center" valign="top" width="600">
-                  <![endif]-->
+                
                   <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" >
       
                     <tr>
-                      <td bgcolor="#ffffff" align="center" style="padding: 20px 30px 40px 30px; color: #666666; font-family: 'Poppins', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                        <img src="https://res.cloudinary.com/dvqlenul5/image/upload/v1648904794/logo1_ykmcgn.png" alt="logo" style=" width: 200px"/>
-                      </td>
-                  </tr>
-                    <!-- COPY -->
-                    <tr>
-                      <td bgcolor="#ffffff" align="center" style="padding: 20px 30px 40px 30px; color: #666666; font-family: 'Poppins', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
-                        <p style="margin: 0;">Gracias ${username} por unirte a Mejor Postor! Primero, es necesario que confirmes tu cuenta, haciendo click en el siguiente botón.</p>
-                      </td>
-                    </tr>
-                    <!-- BULLETPROOF BUTTON -->
-                    <tr>
-                      <td bgcolor="#ffffff" align="left">
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                          <tr>
-                            <td bgcolor="#ffffff" align="center" style="padding: 20px 30px 60px 30px;">
-                              <table border="0" cellspacing="0" cellpadding="0">
-                                <tr>
-                                    <td align="center" style="border-radius: 43px;" bgcolor="#32a42b"><a href="${process.env.URL_SERVER}:${process.env.PORT_SERVER_FRONT}/api/auth/verify/${uid}" target="_blank" style="font-size: 20px; font-family: Poppins, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 43px; border: 1px solid #32a42b; display: inline-block;">Confirma tu cuenta</a></td>
-                                </tr>
-                              </table>
-                            </td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                    <!-- COPY -->
-                 
-                    <!-- COPY -->
-                    <tr>
-                      <td bgcolor="#ffffff" align="center" style="padding: 0px 30px 20px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
-                        <p style="margin: 0;">Si tienes alguna duda ${username}, podés contactarnos a través de nuestra página web o redes sociales.</p>
-                      </td>
-                    </tr>
-                    <!-- COPY -->
-                    <tr>
-                      <td bgcolor="#ffffff" align="left" style="padding: 0px 30px 40px 30px; border-radius: 0px 0px 4px 4px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
-                        <p style="margin: 0;">Saludos,<br>El equipo de mejor postor</p>
-                      </td>
-                    </tr>
-                  </table>
-                  <!--[if (gte mso 9)|(IE)]>
-                  </td>
-                  </tr>
-                  </table>
-                  <![endif]-->
+                      <td style="padding: 20px 50px" bgcolor="#ffffff">
+                <div
+                  style="
+                    height: 1px;
+                    background-color: #a4a4a4;
+                    line-height: 1px;
+                  "
+                ></div>
               </td>
-          </tr>
-          <!-- FOOTER -->
-          <tr>
-              <td bgcolor="#f4f4f4" align="center" style="padding: 0px 10px 0px 10px;">
-                  <!--[if (gte mso 9)|(IE)]>
-                  <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
-                  <tr>
-                  <td align="center" valign="top" width="600">
-                  <![endif]-->
-                  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" >
-                    <!-- NAVIGATION -->
-                  
-                    <!-- PERMISSION REMINDER -->
-                    <tr>
-                      <td bgcolor="#C2C2C2" align="center" style="padding: 30px 30px 30px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px;" >
-                        <p style="margin: 0;">Recibiste este mail ya que acabas de registrarte en Mejor postor, </p>
-                      </td>
-                    </tr>
-                    <!-- UNSUBSCRIBE -->
-                    <tr>
-                      <td bgcolor="#C2C2C2" align="center" style="padding: 0px 30px 30px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px;" >
-                        <p style="margin: 0;">Este mail fue generado de forma automática </p>
-                      </td>
-                    </tr>
-                    <!-- ADDRESS -->
-                    <tr>
-                      <td bgcolor="#C2C2C2" align="center" style="justify-content: space-between; align-items: center; padding: 0px 30px 30px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px;" >
-                        <p style="margin: 0;">Argentina - 2022</p>
-                      </td>
-                    </tr>   
-                  </table>
-                  <!--[if (gte mso 9)|(IE)]>
-                  </td>
                   </tr>
-                  </table>
-                  <![endif]-->
-              </td>
-          </tr>
+                    
+                    <tr>
+          <td bgcolor="#ffffff" style="max-width:600px; padding: 0px 30px 0px 30px; font-family:'Nunito Sans', sans-serif; font-weight: 400" class="esd-text">
+              <h1 style="font-size:24px; margin:0px; color: #3d424a">Verify your email</h1>
+          </td>
+      </tr>
+      <tr>
+        <td bgcolor="#ffffff" style="display: flex; flex-direction:column; align-items:left; padding: 0px 30px 0px 30px; color: #666666; font-family:'Nunito Sans', sans-serif; font-weight: 400" class="esd-text">
+          <h5 style="margin:30px 0px 10px">${name}, thank you for signing up with Mejor Postor 🥳</h5>
+        </td>
+      </tr>
+       <tr>
+        <td bgcolor="#ffffff" style="display: flex; flex-direction:column; align-items:left; padding: 0px 30px 0px 30px; color: #666666; font-family:'Nunito Sans', sans-serif; font-weight: 400" class="esd-text">
+          <h5 style="margin:10px 0px 30px">Only one tiny step to go. Just verify your email address, and you're all set!</h5>
+        </td>
+      </tr>
+                   
+                        <tr>
+                                <td bgcolor="#ffffff" align="left">
+                                    <table border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                            <tr>
+                                                <td bgcolor="#ffffff" align="left" style="padding: 0px 30px 0px 30px;">
+                                                    <table border="0" cellspacing="0" cellpadding="0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td align="left" style="border-radius: 10px;" bgcolor="#feae49"><a href="${process.env.URL_SERVER}:${process.env.PORT_SERVER_FRONT}/api/auth/verify/${uid}" target="_blank" style="font-size: 14px; font-family:'Nunito Sans', sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 10px 25px; display: inline-block;">Verify now</a></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 32px 50px" bgcolor="#ffffff">
+                                    <div style="height:1px; background-color:#a4a4a4; line-height:1px" class="esd-text">‌</div>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+          <td bgcolor="#ffffff" style="max-width:600px; padding: 0px 30px 20px 30px; color: #666666; font-family:'Nunito Sans', sans-serif; font-weight: 400" class="esd-text">
+              <h5 style="margin: 0;">If you're having trouble clicking the button, click on or copy the following link:</h5>                    
+          </td>
+      </tr>
+      <tr>
+          <td bgcolor="#ffffff" style="max-width:600px; padding: 0px 30px 30px 30px; font-size:12px; color: #666666; font-family:'Nunito Sans', sans-serif; font-weight: 400" class="esd-text">
+              <a style="color:#fe920b; font-size:12px;" href="${process.env.URL_SERVER}:${process.env.PORT_SERVER_FRONT}/api/auth/verify/${uid}">${process.env.URL_SERVER}:${process.env.PORT_SERVER_FRONT}/api/auth/verify/${uid}</a>                      
+          </td>
+      </tr>
+               <tr>
+                                <td bgcolor="#C2C2C2" align="center" style="padding: 20px 30px 15px 30px; color: #666666; font-family:'Nunito Sans', sans-serif; font-size: 12px" class="esd-text">
+                                    <p style="margin: 0; font-weight:700">Copyright © 2022 Mejor Postor</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td bgcolor="#C2C2C2" align="center" style=" padding: 0px 30px 20px 30px; color: #666666;font-family:'Nunito Sans', sans-serif; font-size: 12px; font-weight:700" class="esd-text">
+                                    <p style="margin: 0;">All rights reserved</p>
+                                </td>
+                            </tr>
       </table>
-      </body>
-      </html>`,
+    </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
+`,
     });
 
     await newUser.save(); // Guardo el usuario en la DB
@@ -264,6 +234,7 @@ exports.signUp = async (req, res) => {
       message: "User saved successfully",
     });
   } catch (error) {
+    console.log(`sale por acá`);
     res.status(400).json({ error: error });
   }
 };
@@ -306,8 +277,21 @@ exports.signIn = async (req, res) => {
 
 exports.verify = async (req, res) => {
   try {
-    const { uid } = req.params;
-    await User.updateOne({ uuidEmail: uid }, { $set: { enabled: true } });
+    const { token } = req.params;
+
+    const decoded = jwt.verify(token, privateKey);
+
+    const userFound = await User.findOne({ uuidEmail: token });
+
+    console.log(`userFound:`, userFound.enabled);
+
+    if (userFound.enabled)
+      return res.status(409).json({
+        message:
+          "The verification token is invalid or has already been used. Please retry the flow",
+      });
+
+    await User.updateOne({ uuidEmail: token }, { $set: { enabled: true } });
     res.status(200).json({ message: "Email verified successfully" });
   } catch (error) {
     res.status(400).json({ error: error });

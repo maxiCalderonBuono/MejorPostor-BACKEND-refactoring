@@ -15,17 +15,15 @@ exports.checkRolesExisted = (req, res, next) => {
 };
 
 exports.checkDuplicateUsernameOrEmail = async function (req, res, next) {
-  const { username, email } = req.body;
-
-  const userUsername = await User.findOne({ username: username });
-
-  if (userUsername)
-    return res.status(400).json({ message: "The Username already exist" });
+  const { email } = req.body;
 
   const userEmail = await User.findOne({ email: email });
 
-  if (userEmail)
-    return res.status(400).json({ message: "The Email already exist" });
+  if (userEmail) {
+    return res
+      .status(400)
+      .json({ message: "The mail is taken. Please use another one." });
+  }
 
   next();
 };

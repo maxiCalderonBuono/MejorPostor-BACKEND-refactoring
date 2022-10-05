@@ -21,7 +21,7 @@ router.post(
   signUp
 );
 
-router.get("/verify/:uid", verify);
+router.get("/verify/:token", verify);
 router.get("/verified", verified);
 router.get("/renew", verifyToken, revalidarToken);
 

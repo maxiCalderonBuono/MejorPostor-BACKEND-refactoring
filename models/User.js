@@ -3,9 +3,8 @@ const bcryptjs = require("bcryptjs");
 
 const userSchema = new Schema(
   {
-    username: {
+    name: {
       type: "string",
-      unique: true,
       required: true,
       trim: true,
       min: 3,
@@ -26,18 +25,8 @@ const userSchema = new Schema(
       min: 6,
       max: 255,
     },
-    name: {
-      type: "string",
-      required: true,
-      trim: true,
-    },
     surname: {
       type: "string",
-      required: true,
-      trim: true,
-    },
-    birthYear: {
-      type: "number",
       required: true,
       trim: true,
     },
