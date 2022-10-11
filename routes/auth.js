@@ -6,6 +6,7 @@ const {
   verify,
   verified,
   revalidarToken,
+  passwordRecovery,
 } = require("../controllers/authController");
 const {
   checkDuplicateUsernameOrEmail,
@@ -15,13 +16,15 @@ const { verifyToken } = require("../middlewares/jwt-validator");
 
 router.post("/signin", signIn);
 
+router.post("/password/update", passwordRecovery);
+
 router.post(
   "/signup",
   [checkRolesExisted, checkDuplicateUsernameOrEmail],
   signUp
 );
 
-router.get("/verify/:token", verify);
+router.get("/verify/:_id/:uniqueString", verify);
 router.get("/verified", verified);
 router.get("/renew", verifyToken, revalidarToken);
 

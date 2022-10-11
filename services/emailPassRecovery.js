@@ -1,10 +1,9 @@
 const nodemailer = require("nodemailer");
+const User = require("../models/User");
+const UserVerification = require("../models/UserVerification");
 
-async function sendEmail({
-  email,
-  subject = "Please verify your email address 🚀",
-  body,
-}) {
+async function sendEmailRecovery({ email, subject, body }) {
+  console.log(`subject:`, subject);
   try {
     const transporter = nodemailer.createTransport({
       service: process.env.EMAIL_SERVICE,
@@ -19,6 +18,7 @@ async function sendEmail({
       subject: subject,
       html: body,
     };
+
     const { messageId } = await transporter.sendMail(emailOptions);
     return messageId;
   } catch (error) {
@@ -26,4 +26,4 @@ async function sendEmail({
   }
 }
 
-module.exports = { sendEmail };
+module.exports = { sendEmailRecovery };

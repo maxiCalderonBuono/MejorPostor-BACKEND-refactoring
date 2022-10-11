@@ -47,9 +47,6 @@ const userSchema = new Schema(
         type: Schema.Types.ObjectId,
       },
     ],
-    uuidEmail: {
-      type: "string",
-    },
     enabled: {
       type: "boolean",
       default: false,
