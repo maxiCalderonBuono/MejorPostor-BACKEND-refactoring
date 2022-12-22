@@ -16,8 +16,6 @@ exports.createProduct = async (req, res) => {
       bidUser,
     } = req.body;
 
-    console.log(bidUser);
-
     const user = await User.findById(id);
 
     const highestBidUser = await User.findById(bidUser);
@@ -87,7 +85,6 @@ exports.getProductById = async function (req, res) {
 };
 
 exports.updateProductById = async function (req, res) {
-  console.log("params", req.params, "body", req.body);
   try {
     const { productId } = req.params;
     const obj = req.body;

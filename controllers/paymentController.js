@@ -9,8 +9,6 @@ exports.preferences = async (req, res) => {
   const { unit_price } = req.body;
   const { surname, email } = req.headers;
 
-  console.log(req.headers);
-
   let preference = {
     items: [
       {

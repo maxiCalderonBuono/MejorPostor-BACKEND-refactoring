@@ -17,11 +17,11 @@ exports.checkRolesExisted = (req, res, next) => {
 exports.checkDuplicateUsernameOrEmail = async function (req, res, next) {
   const { email } = req.body;
 
-  const userEmail = await User.findOne({ email: email });
+  const userEmail = await User.findOne({ email: email }).exec();
 
   if (userEmail) {
     return res
-      .status(400)
+      .status(409)
       .json({ message: "The mail is taken. Please use another one." });
   }
 

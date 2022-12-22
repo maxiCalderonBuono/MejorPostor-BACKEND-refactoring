@@ -30,7 +30,7 @@ async function sendEmailVerification({
       userId: _id,
       uniqueString: hashString,
       createdAt: Date.now(),
-      expiresAt: Date.now() + 172800000,
+      expiresAt: Date.now() + 172800000, //172800000,
     });
 
     await newUserVerification.save();

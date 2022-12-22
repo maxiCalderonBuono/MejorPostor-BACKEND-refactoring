@@ -4,25 +4,20 @@ exports.usersSchema = joi.object({
   name: joi
     .string()
     .required()
-    .messages({ "any.required": "El nombre es requerido" }),
+    .messages({ "any.required": "Name is required" }),
   surname: joi
     .string()
     .required()
-    .messages({ "any.required": "El apellido es requerido" }),
-  birthYear: joi
-    .number()
-    .required()
-    .messages({ "any.required": "El año de nacimiento es requerido" }),
+    .messages({ "any.required": "Surname is required" }),
+
   image: joi
     .string()
     .required()
-    .messages({ "any.required": "La imagen es requerida" }),
+    .messages({ "any.required": "Avatar is required" }),
   email: joi
     .string()
     .required()
-    .messages({ "any.required": "El email es requerido" }),
+    .messages({ "any.required": "Email is required" }),
   id: joi.string().messages({ "any.required": "El id es requerido" }),
-  username: joi
-    .string()
-    .messages({ "any.required": "El username es requerido" }),
+  username: joi.string().messages({ "any.required": "Username is required" }),
 });

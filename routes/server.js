@@ -1,13 +1,15 @@
 const express = require("express");
 const path = require("path");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const DBConnection = require("../config/Db.js");
+const credentials = require("../middlewares/credentials.js");
+
 const allowedOrigins = {
   origin: "*",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  preflightContinue: false,
-  optionsSuccessStatus: 204,
+  optionsSuccessStatus: 200,
 };
 class Server {
   constructor() {
@@ -30,6 +32,7 @@ class Server {
   }
 
   middlewares() {
+    this.app.use(credentials);
     //Configuracion CORS
 
     this.app.use(cors({ origin: allowedOrigins }));
@@ -39,6 +42,8 @@ class Server {
 
     //lectura de datos enviados en el body  de la peticion
     this.app.use(express.json({ extend: true }));
+
+    this.app.use(cookieParser());
   }
 
   //definimos las rutas
@@ -60,6 +65,7 @@ class Server {
 
     this.app.get("*", (req, res) => {
       res.sendFile(path.join(__dirname + "/../dist/index.html"));
+      //res.sendFile(path.join(__dirname, "dist", "index.html"))
     });
   }
 

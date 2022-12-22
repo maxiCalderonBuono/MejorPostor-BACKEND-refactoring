@@ -5,8 +5,12 @@ const {
   signIn,
   verify,
   verified,
-  revalidarToken,
+  refreshToken,
+  refreshEmailVerification,
+  logOut,
   passwordRecovery,
+  resetPassword,
+  confirmNewPassword,
 } = require("../controllers/authController");
 const {
   checkDuplicateUsernameOrEmail,
@@ -16,16 +20,19 @@ const { verifyToken } = require("../middlewares/jwt-validator");
 
 router.post("/signin", signIn);
 
-router.post("/password/update", passwordRecovery);
+router.post("/password/recovery", passwordRecovery);
 
 router.post(
   "/signup",
   [checkRolesExisted, checkDuplicateUsernameOrEmail],
   signUp
 );
-
+router.get("/password/reset/:_id/:resetString", resetPassword);
+router.post("/verify/refresh/:_id/:uniqueString", refreshEmailVerification);
+router.post("/password/confirm", confirmNewPassword);
 router.get("/verify/:_id/:uniqueString", verify);
 router.get("/verified", verified);
-router.get("/renew", verifyToken, revalidarToken);
+router.get("/renew", refreshToken);
+router.get("/logout", logOut);
 
 module.exports = router;

@@ -1,7 +1,7 @@
 const nodemailer = require("nodemailer");
 const PasswordReset = require("../models/PasswordReset");
 
-async function sendEmailRecovery({ email, resetString, _id, subject, body }) {
+async function sendEmailConfirm({ email, subject, body }) {
   try {
     const transporter = nodemailer.createTransport({
       service: process.env.EMAIL_SERVICE,
@@ -17,17 +17,6 @@ async function sendEmailRecovery({ email, resetString, _id, subject, body }) {
       html: body,
     };
 
-    const hashString = await PasswordReset.encryptUniqueString(resetString);
-
-    const newPasswordReset = new PasswordReset({
-      userId: _id,
-      resetString: hashString,
-      createdAt: Date.now(),
-      expiresAt: Date.now() + 3600000,
-    });
-
-    await newPasswordReset.save();
-
     const { messageId } = await transporter.sendMail(emailOptions);
     return messageId;
   } catch (error) {
@@ -35,4 +24,4 @@ async function sendEmailRecovery({ email, resetString, _id, subject, body }) {
   }
 }
 
-module.exports = { sendEmailRecovery };
+module.exports = { sendEmailConfirm };

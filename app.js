@@ -1,5 +1,6 @@
 //Configuramos dotenv
 require("dotenv").config();
+const mongoose = require("mongoose");
 
 // Genera los roles la primer vez que se inicializa la app
 
@@ -10,4 +11,8 @@ createRoles();
 const Server = require("./routes/server.js");
 const server = new Server();
 
-server.listen(); //inicializacion del server
+mongoose.connection.once("open", () => {
+  server.listen();
+});
+
+//inicializacion del server

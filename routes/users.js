@@ -11,8 +11,10 @@ const validation = require("../services/dataValidation");
 const { usersSchema } = require("../middlewares/schemas/users");
 
 router.get("/", verifyToken, getUsers);
-router.get("/:userId", verifyToken, getUserById);
-router.put("/:userId", [verifyToken, validation(usersSchema)], updateUserById);
-router.delete("/:userId", verifyToken, deleteUserById);
+router
+  .route("/:userId")
+  .get(verifyToken, getUserById)
+  .put([verifyToken, validation(usersSchema)], updateUserById)
+  .delete(verifyToken, deleteUserById);
 
 module.exports = router;
