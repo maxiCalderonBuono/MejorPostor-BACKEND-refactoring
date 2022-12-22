@@ -1,6 +1,7 @@
 # S1-07-T-BackEnd
 
 BackEnd de Mejor Postor, PWA de subastas online.
+
 ## Stack/Tecnologías utilizadas
 
 - NodeJS
@@ -14,6 +15,7 @@ BackEnd de Mejor Postor, PWA de subastas online.
 ## Autores
 
 ### Back-End
+
 - Ignacio Gibbs
 
 ### Front-End
@@ -21,10 +23,13 @@ BackEnd de Mejor Postor, PWA de subastas online.
 - Alejandro Pedrosa
 - Maximiliano Calderón
 - Lisandro Perrotta
+
 ## URL Server backend
 
 https://mejorpostor-backend.herokuapp.com/
+
 ## Para iniciar el proyecto
+
 ### Clone el siguiente repositorio: https://github.com/No-Country/S1-07-T-BackEnd
 
 - `npm i`
@@ -40,6 +45,7 @@ https://mejorpostor-backend.herokuapp.com/
 - EMAIL_USER = ""
 - EMAIL_PASS = ""
 - MP_TOKEN = ""
+
 ## API endpoints
 
 These endpoints allow you to handle the backend
