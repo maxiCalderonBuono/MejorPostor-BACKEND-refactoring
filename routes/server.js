@@ -48,6 +48,7 @@ class Server {
 
   //definimos las rutas
   routes() {
+    this.app.use("/", require("./root.js"));
     //rutas de usuario
     this.app.use(this.userRoutesPath, require("./users.js"));
 
@@ -71,7 +72,7 @@ class Server {
 
   listen() {
     this.app.listen(this.port, () => {
-      console.log(`Server listening on ${this.urlServer}:${this.port}`);
+      console.log(`Server running on ${this.urlServer}:${this.port}`);
     });
   }
 }

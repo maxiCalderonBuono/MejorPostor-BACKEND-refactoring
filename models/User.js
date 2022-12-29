@@ -51,6 +51,7 @@ const userSchema = new Schema(
       type: "boolean",
       default: false,
     },
+    refreshToken: [String],
     deleted: {
       type: "boolean",
       default: false,
@@ -59,7 +60,7 @@ const userSchema = new Schema(
   {
     timestamps: true,
     versionkey: false,
-    strict: false,
+    // strict: false,
   }
 );
 

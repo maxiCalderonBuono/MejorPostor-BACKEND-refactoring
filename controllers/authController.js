@@ -491,6 +491,8 @@ exports.signIn = async (req, res) => {
   try {
     const { email, password: pwd } = req.body;
 
+    const cookies = req.cookies;
+
     const userFound = await User.findOne({
       email: email,
     }).populate("roles");
@@ -517,7 +519,7 @@ exports.signIn = async (req, res) => {
       expiresIn: "60s",
     });
 
-    const refreshToken = jwt.sign(
+    const newRefreshToken = jwt.sign(
       { username: name, id: _id },
       privatekeyRefresh,
       {
@@ -526,12 +528,36 @@ exports.signIn = async (req, res) => {
       }
     );
 
-    await User.updateOne({ _id }, { $set: { refreshToken: refreshToken } });
+    let newRefreshTokenArray = !cookies?.jwt
+      ? userFound.refreshToken
+      : userFound.refreshToken.filter((rt) => rt !== cookies.jwt);
 
-    res.cookie("jwt", refreshToken, {
+    if (cookies?.jwt) {
+      const refreshToken = cookies.jwt;
+
+      const foundToken = await User.findOne({ refreshToken }).exec();
+
+      if (!foundToken) {
+        newRefreshToken = [];
+      }
+      res.clearCookie("jwt", {
+        htppOnly: true,
+        sameSite: "Strict",
+        // secure: true,
+      });
+    }
+
+    const result = await User.updateOne(
+      { _id },
+      { $set: { refreshToken: [...newRefreshTokenArray, newRefreshToken] } }
+    );
+
+    console.log(result);
+
+    res.cookie("jwt", newRefreshToken, {
       httpOnly: true,
       sameSite: "Strict", //Set to None in production
-      secure: true,
+      // secure: true,
       maxAge: 24 * 60 * 60 * 1000,
     });
 
@@ -1042,15 +1068,56 @@ exports.refreshToken = async (req, res) => {
 
   const refreshToken = cookies.jwt;
 
+  res.clearCookie("jwt", {
+    htppOnly: true,
+    sameSite: "Strict",
+    // secure: true
+  });
+
   const userFound = await User.findOne({ refreshToken }).exec();
 
-  if (!userFound) return res.sendStatus(403);
+  if (!userFound) {
+    jwt.verify(refreshToken, publickeyRefresh, async (err, decoded) => {
+      if (err) return res.sendStatus(403);
 
-  jwt.verify(refreshToken, publickeyRefresh, (err, decoded) => {
+      const hackedUser = await User.findOne({ username: decoded.name }).exec();
+      hackedUser.refreshToken = [];
+      await hackedUser.save();
+    });
+    return res.sendStatus(403);
+  }
+
+  const newRefreshTokenArray = userFound.refreshToken.filter(
+    (rt) => rt !== refreshToken
+  );
+
+  jwt.verify(refreshToken, publickeyRefresh, async (err, decoded) => {
+    if (err) {
+      userFound.refreshToken = [...newRefreshTokenArray];
+      await userFound.save();
+    }
     if (err || userFound.name !== decoded.username) return res.sendStatus(403);
     const accessToken = jwt.sign({ username: decoded.name }, privateKey, {
       expiresIn: "30s",
     });
+    const newRefreshToken = jwt.sign(
+      { username: decoded.name, id: decoded._id },
+      privatekeyRefresh,
+      {
+        algorithm: "RS256",
+        expiresIn: "1d",
+      }
+    );
+    userFound.refreshToken = [...newRefreshTokenArray, newRefreshToken];
+    await userFound.save();
+
+    res.cookie("jwt", newRefreshToken, {
+      httpOnly: true,
+      sameSite: "Strict", //Set to None in production
+      secure: true,
+      maxAge: 24 * 60 * 60 * 1000,
+    });
+
     res.json({ accessToken });
   });
 };
@@ -1062,15 +1129,28 @@ exports.logOut = async (req, res) => {
 
   const refreshToken = cookies.jwt;
 
-  const { _id } = await User.findOne({ refreshToken }).exec();
+  const { _id, refreshToken: refreshTokenArray } = await User.findOne({
+    refreshToken,
+  }).exec();
 
   if (!_id) {
-    res.clearCookie("jwt", { htppOnly: true, sameSite: "None", secure: true });
+    res.clearCookie("jwt", {
+      htppOnly: true,
+      sameSite: "Strict",
+      // secure: true,
+    });
     return res.sendStatus(204);
   }
 
-  await User.updateOne({ _id }, { $unset: { refreshToken: "" } });
+  await User.updateOne(
+    { _id },
+    {
+      $set: {
+        refreshToken: refreshTokenArray.filter((rt) => rt !== refreshToken),
+      },
+    }
+  );
 
-  res.clearCookie("jwt", { htppOnly: true, sameSite: "None", secure: true });
+  res.clearCookie("jwt", { htppOnly: true, sameSite: "Strict" }); //secure: true
   res.sendStatus(204);
 };
